@@ -27,7 +27,7 @@ jobs:
       
       - name: Building Cart Service
         run: |
-          cd src/cartservice/
+          cd src/cartservice/src/
           docker build -t boutiqueaksacr.azurecr.io/cartservice:v1 .
           docker push boutiqueaksacr.azurecr.io/cartservice:v1
 
