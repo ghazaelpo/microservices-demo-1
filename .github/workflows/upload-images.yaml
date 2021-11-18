@@ -6,10 +6,10 @@ jobs:
   Upload images:
     runs-on: ubuntu-latest
     steps:
-      - name: "Login to Azure CLI"
-        uses: azure/login@v1  
-        with:
-          creds: ${{ AzLogin.ARM_SUBSCRIPTION_ID }}
+      #- name: "Login to Azure CLI"
+      #  uses: azure/login@v1  
+      #  with:
+      #    creds: ${{ AzLogin.ARM_SUBSCRIPTION_ID }}
 
       - name: "Login to ACR"
         uses: azure/docker-login@v1
