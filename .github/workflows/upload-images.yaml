@@ -27,6 +27,7 @@ jobs:
 
 
   uploadCart:
+    needs: uploadAd
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,6 +39,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/cartservice:v1
 
   uploadCheckout:
+    needs: [uploadAd, uploadCart]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -49,6 +51,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/checkoutservice:v1
 
   uploadCurrency:
+    needs: [uploadAd, uploadCart, uploadCheckout]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -60,6 +63,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/currencyservice:v1
 
   uploadEmail:
+    needs: [uploadAd, uploadCart, uploadCheckout, uploadCurrency]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -71,6 +75,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/emailservice:v1
 
   uploadFront:
+    needs: [uploadAd, uploadCart, uploadCheckout, uploadCurrency, uploadEmail]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -82,6 +87,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/frontend:v1
 
   uploadGenerator:
+    needs: [uploadAd, uploadCart, uploadCheckout, uploadCurrency, uploadEmail, uploadFront]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -93,6 +99,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/loadgenerator:v1
 
   uploadPayment:
+    needs: [uploadAd, uploadCart, uploadCheckout, uploadCurrency, uploadEmail, uploadFront, uploadGenerator]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -104,6 +111,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/paymentservice:v1
 
   uploadCatalog:
+    needs: [uploadAd, uploadCart, uploadCheckout, uploadCurrency, uploadEmail, uploadFront, uploadGenerator, uploadPayment]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -115,6 +123,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/productcatalogservice:v1
 
   uploadRecomendation:
+    needs: [uploadAd, uploadCart, uploadCheckout, uploadCurrency, uploadEmail, uploadFront, uploadGenerator, uploadPayment, uploadCatalog]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -126,6 +135,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/recommendationservice:v1
 
   uploadShipping:
+    needs: [uploadAd, uploadCart, uploadCheckout, uploadCurrency, uploadEmail, uploadFront, uploadGenerator, uploadPayment, uploadRecomendation]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
