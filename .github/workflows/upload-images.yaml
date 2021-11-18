@@ -3,7 +3,7 @@ name: Continuos Integration
 on: [push]
 
 jobs:
-  Upload images:
+  uploadimages:
     runs-on: ubuntu-latest
     steps:
       #- name: "Login to Azure CLI"
