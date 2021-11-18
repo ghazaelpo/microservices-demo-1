@@ -1,0 +1,29 @@
+name: Continuos Integration
+
+on: [push]
+
+jobs:
+  Upload images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Login to Azure CLI"
+        uses: azure/login@v1  
+        with:
+          creds: ${{.AzLogin.ARM_SUBSCRIPTION_ID}}
+
+      - name: "Login to ACR"
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
+
+      - name: "test"
+        run: echo "testing step"
+
+      - name: "Building Docker image"
+        run: |
+          cd src/adservice/
+          docker build -t boutiqueaksacr.azurecr.io/adservice:v1 .
+          docker push boutiqueaksacr.azurecr.io/adservice:v1
+
