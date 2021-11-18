@@ -23,7 +23,7 @@ jobs:
 
       - name: "Building Docker image"
         run: |
-          cd /src/adservice/
+          cd /home/runner/work/microservices-demo-1/microservices-demo-1/src/adservice/
           docker build -t boutiqueaksacr.azurecr.io/adservice:v1 .
           docker push boutiqueaksacr.azurecr.io/adservice:v1
 
