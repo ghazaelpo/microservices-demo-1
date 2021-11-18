@@ -6,24 +6,22 @@ jobs:
   uploadimages:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       #- name: "Login to Azure CLI"
       #  uses: azure/login@v1  
       #  with:
       #    creds: ${{ AzLogin.ARM_SUBSCRIPTION_ID }}
 
-      - name: "Login to ACR"
+      - name: Login to ACR
         uses: azure/docker-login@v1
         with:
           login-server: boutiqueaksacr.azurecr.io
           username: boutiqueaksacr
           password: Aig7jmfHgjP430G2h665bgaRh==DbR81
 
-      - name: "test"
-        run: pwd
-
-      - name: "Building Docker image"
+      - name: Building Docker image
         run: |
-          cd /home/runner/work/microservices-demo-1/microservices-demo-1/src/adservice/
+          cd src/adservice/
           docker build -t boutiqueaksacr.azurecr.io/adservice:v1 .
           docker push boutiqueaksacr.azurecr.io/adservice:v1
 
