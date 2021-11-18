@@ -32,6 +32,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
+
       - name: Building Cart Service
         run: |
           cd src/cartservice/src/
@@ -44,6 +51,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
+
       - name: Building Checkout Service
         run: |
           cd src/checkoutservice/
@@ -55,7 +69,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
+     
       - name: Building Currency Service
         run: |
           cd src/currencyservice/
@@ -67,6 +88,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
 
       - name: Building Email Service
         run: |
@@ -80,6 +108,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
+
       - name: Building Front-End
         run: |
           cd src/frontend/
@@ -91,6 +126,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
 
       - name: Building Load Generator
         run: |
@@ -104,6 +146,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
+
       - name: Building Payment Service
         run: |
           cd src/paymentservice/
@@ -115,6 +164,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
 
       - name: Building Product Catalog Service
         run: |
@@ -128,6 +184,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
+
       - name: Building Recommendation service
         run: |
           cd src/recommendationservice/
@@ -139,6 +202,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
 
       - name: Building Shipping Service
         run: |
