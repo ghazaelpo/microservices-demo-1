@@ -19,7 +19,7 @@ jobs:
           password: Aig7jmfHgjP430G2h665bgaRh==DbR81
 
       - name: "test"
-        run: echo "testing step"
+        run: pwd
 
       - name: "Building Docker image"
         run: |
