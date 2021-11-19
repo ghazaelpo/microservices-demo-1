@@ -1,76 +1,9 @@
-name: "Continuous Integration - Pull Request"
+name: Continuous Delivery - Pull Request
 on:
   pull_request:
     branches:
       - master
 jobs:
-  deployImages:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-  
-      - name: Login to ACR
-        uses: azure/docker-login@v1
-        with:
-          login-server: boutiqueaksacr.azurecr.io
-          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
-          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
-
-      - name: Building Ad Service
-        run: |
-          cd src/adservice/
-          docker push boutiqueaksacr.azurecr.io/adservice:v1
-
-      - name: Building Cart Service
-        run: |
-          cd src/cartservice/src/
-          docker push boutiqueaksacr.azurecr.io/cartservice:v1
-
-      - name: Building Checkout Service
-        run: |
-          cd src/checkoutservice/
-          docker push boutiqueaksacr.azurecr.io/checkoutservice:v1
-
-      - name: Building Currency Service
-        run: |
-          cd src/currencyservice/
-          docker push boutiqueaksacr.azurecr.io/currencyservice:v1
-
-      - name: Building Email Service
-        run: |
-          cd src/emailservice/
-          docker push boutiqueaksacr.azurecr.io/emailservice:v1
-
-      - name: Building Front-End
-        run: |
-          cd src/frontend/
-          docker push boutiqueaksacr.azurecr.io/frontend:v1
-
-      - name: Building Load Generator
-        run: |
-          cd src/loadgenerator/
-          docker push boutiqueaksacr.azurecr.io/loadgenerator:v1
-
-      - name: Building Payment Service
-        run: |
-          cd src/paymentservice/
-          docker push boutiqueaksacr.azurecr.io/paymentservice:v1
-
-      - name: Building Product Catalog Service
-        run: |
-          cd src/productcatalogservice/
-          docker push boutiqueaksacr.azurecr.io/productcatalogservice:v1
-
-      - name: Building Recommendation service
-        run: |
-          cd src/recommendationservice/
-          docker push boutiqueaksacr.azurecr.io/recommendationservice:v1
-
-      - name: Building Shipping Service
-        run: |
-          cd src/shippingservice/
-          docker push boutiqueaksacr.azurecr.io/shippingservice:v1
-
   aksHelm:
     runs-on: ubuntu-latest
     steps:
