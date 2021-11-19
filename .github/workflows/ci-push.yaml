@@ -16,8 +16,8 @@ jobs:
         uses: azure/docker-login@v1
         with:
           login-server: boutiqueaksacr.azurecr.io
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
 
       - name: Building Ad Service
         run: |
