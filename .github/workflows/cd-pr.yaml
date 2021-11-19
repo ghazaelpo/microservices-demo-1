@@ -13,7 +13,13 @@ jobs:
       - name: Login to AKS
         uses: azure/aks-set-context@v1
         with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          creds: '{
+                    "appId": "b13b7e1c-e6d3-451f-8a32-740a18f29899",
+                    "displayName": "boutiquesp",
+                    "name": "b13b7e1c-e6d3-451f-8a32-740a18f29899",
+                    "password": "4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm",
+                    "tenant": "c8cd0425-e7b7-4f3d-9215-7e5fa3f439e8"
+                  }'
           cluster-name: boutiqueaks
           resource-group: mario-robles
       
