@@ -80,7 +80,7 @@ jobs:
       - name: Login to AKS
         uses: azure/aks-set-context@v1
         with:
-          creds: c4774376-bc4c-48e6-93eb-c0ac26c6345d
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
           cluster-name: boutiqueaks
           resource-group: mario-robles
       
