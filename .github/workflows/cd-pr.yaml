@@ -23,9 +23,9 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-id: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          tenant-id: c8cd0425-e7b7-4f3d-9215-7e5fa3f439e8
+          subscription-id: c4774376-bc4c-48e6-93eb-c0ac26c6345d
 
       - name: Attaching Cluster
         run: |
