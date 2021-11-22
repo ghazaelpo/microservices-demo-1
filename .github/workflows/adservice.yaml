@@ -17,13 +17,10 @@ jobs:
 
       - name: Login to ACR
         uses: azure/docker-login@v1
-        env:
-          AZURE_USER: ${{ secrets.REGISTRY_USERNAME }}
-          AZURE_CLIENTSECRET: ${{ secrets.REGISTRY_PASSWORD }}
         with:
           login-server: boutiqueaksacr.azurecr.io
-          username: ${{ env.AZURE_USER }}
-          password: ${{ env.AZURE_CLIENTSECRET }}
+          username: b13b7e1c-e6d3-451f-8a32-740a18f29899
+          password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
 
       - name: Building Ad Service 
         run: |
