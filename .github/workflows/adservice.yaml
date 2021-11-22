@@ -23,6 +23,7 @@ jobs:
       
       - name: Building Ad Service
         run: |
-          cd ../../src/adservice/
-          docker build -t boutiqueaksacr.azurecr.io/adservice:v1 .
-          docker push boutiqueaksacr.azurecr.io/adservice:v1
+          pwd
+          #cd ../../src/adservice/
+          #docker build -t boutiqueaksacr.azurecr.io/adservice:v1 .
+          #docker push boutiqueaksacr.azurecr.io/adservice:v1
