@@ -1,0 +1,29 @@
+name: Building Cart Service
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: ["Building Ad Service"]
+    branches: [master]
+    types:
+      - completed
+
+jobs:
+  build-ad-service:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Building Cart Service
+        run: |
+          cd src/cartservice/src/
+          docker build -t boutiqueaksacr.azurecr.io/cartservice:v1 .
+          docker push boutiqueaksacr.azurecr.io/cartservice:v1
