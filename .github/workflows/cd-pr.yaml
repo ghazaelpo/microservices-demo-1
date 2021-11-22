@@ -19,6 +19,14 @@ jobs:
           cluster-name: boutiqueaks
           resource-group: mario-robles
       
+      - name: Attaching Cluster
+        run: |
+          az aks update -n boutiqueaks -g mario-robles --attach-acr boutiqueaksacr
+
+      - name: Checking the ACR
+        run: |
+          az aks check-acr -g mario-robles -n boutiqueaks  --acr boutiqueaksacr.azurecr.io
+      
       - name: Helm install
         run: helm install boutique ./gpi
         working-directory: chart/
