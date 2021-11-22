@@ -4,6 +4,7 @@ name: Building Ad Service
 on:
   workflow_run:
     workflows: ["Continuous Integration - Push"]
+    branches: [main]
     types:
       - completed
 
