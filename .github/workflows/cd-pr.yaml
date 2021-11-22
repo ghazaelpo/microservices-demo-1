@@ -19,6 +19,10 @@ jobs:
           cluster-name: boutiqueaks
           resource-group: mario-robles
       
+      - name: "Login to Azure CLI"
+        run: |
+          az login -u ${{ secrets.AZURE_LOGIN }} -p ${{ secrets.AZURE_SECRET }}
+
       - name: Helm install
         run: helm install boutique ./gpi
         working-directory: chart/
