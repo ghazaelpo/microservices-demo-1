@@ -1,7 +1,9 @@
 name: Continuous Integration - Push
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - main
 jobs:
   Integration:
     runs-on: ubuntu-latest
