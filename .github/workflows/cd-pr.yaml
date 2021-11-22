@@ -20,12 +20,12 @@ jobs:
           resource-group: mario-robles
       
 
-      - name: 'Az CLI login'
+      - name: Login to AZ CLI
         uses: azure/login@v1
+        env:
+          CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}        
         with:
-          client-id: b13b7e1c-e6d3-451f-8a32-740a18f29899
-          tenant-id: c8cd0425-e7b7-4f3d-9215-7e5fa3f439e8
-          subscription-id: c4774376-bc4c-48e6-93eb-c0ac26c6345d
+          creds: ${{ env.CREDENTIALS }}
 
       - name: Attaching Cluster
         run: |
