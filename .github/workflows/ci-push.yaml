@@ -3,7 +3,7 @@ name: Continuous Integration - Push
 on: [push]
 
 jobs:
-  buildImages:
+  Integration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
