@@ -19,6 +19,10 @@ jobs:
           username: b13b7e1c-e6d3-451f-8a32-740a18f29899
           password: 4YATHKLU8O7MUjq_fQpLuaxPmci8l3q3qm
 
+      - name: Login to Azure CLI
+        run: |
+          az login -u mario.robles@digitalonus.com -p alfa2000. 
+
       - name: Building Ad Service
         run: |
           cd src/adservice/
