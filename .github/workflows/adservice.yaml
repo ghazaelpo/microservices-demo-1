@@ -22,7 +22,6 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }} 
       
       - name: Building Ad Service
-        uses: actions/checkout@v2
         run: |
           cd src/adservice/
           docker build -t boutiqueaksacr.azurecr.io/adservice:v1 .
