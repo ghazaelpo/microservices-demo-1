@@ -14,15 +14,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Login to ACR
         uses: azure/docker-login@v1
         with:
           login-server: boutiqueaksacr.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }} 
-      
-      - name: Building Ad Service
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Building Ad Service 
         run: |
           cd src/adservice/
           docker build -t boutiqueaksacr.azurecr.io/adservice:v1 .
