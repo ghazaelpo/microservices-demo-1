@@ -9,10 +9,18 @@ on:
       - completed
 
 jobs:
-  notify:
+  build-ad-service:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }} 
+      
       - uses: actions/checkout@v2
       - name: Building Ad Service
         run: |
