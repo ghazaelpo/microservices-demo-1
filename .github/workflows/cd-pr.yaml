@@ -20,12 +20,9 @@ jobs:
           resource-group: mario-robles
       
 
-      - name: Login to AZ CLI
-        uses: azure/login@v1
-        env:
-          CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}        
-        with:
-          creds: ${{ env.CREDENTIALS }}
+      - name: "Login to Azure CLI"
+        run: |
+          az login -u mario.robles@digitalonus.com -p alfa2000.
 
       - name: Attaching Cluster
         run: |
