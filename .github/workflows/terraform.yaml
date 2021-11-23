@@ -17,6 +17,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: microservices-demo-1/terraform
     
     env:
       ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
