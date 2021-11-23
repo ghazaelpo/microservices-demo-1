@@ -216,3 +216,5 @@ jobs:
           cd src/shippingservice/
           docker build -t boutiqueaksacr.azurecr.io/shippingservice:v1 .
           docker push boutiqueaksacr.azurecr.io/shippingservice:v1
+
+#Hi 
