@@ -31,6 +31,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
     
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - name: Building Cart Service
         run: |
           cd src/cartservice/src/
@@ -42,6 +49,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+     
       - name: Building Checkout Service
         run: |
           cd src/checkoutservice/
@@ -53,6 +68,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - name: Building Currency Service
         run: |
           cd src/currencyservice/
@@ -64,6 +87,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+ 
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}   
+     
       - name: Building Email Service
         run: |
           cd src/emailservice/
@@ -75,6 +106,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - name: Building Front-End
         run: |
           cd src/frontend/
@@ -86,6 +125,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - name: Building Load Generator
         run: |
           cd src/loadgenerator/
@@ -97,6 +144,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+ 
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - name: Building Payment Service
         run: |
           cd src/paymentservice/
@@ -108,6 +163,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - name: Building Product Catalog Service
         run: |
           cd src/productcatalogservice/
@@ -119,6 +182,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - name: Building Recommendation service
         run: |
           cd src/recommendationservice/
@@ -130,6 +201,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
       - name: Building Shipping Service
         run: |
           cd src/shippingservice/
