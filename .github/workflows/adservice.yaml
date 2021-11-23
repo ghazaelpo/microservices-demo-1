@@ -27,7 +27,7 @@ jobs:
 
       - name: Delete image 
         run: |
-          az acr repository delete --name boutiqueaksacr --image boutiqueaksacr/adservice:v1
+          az acr repository delete --name boutiqueaksacr --image adservice:v1
 
       - name: Building Ad Service 
         run: |
