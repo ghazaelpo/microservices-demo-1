@@ -1,0 +1,36 @@
+name: 'Building Ad service image'
+
+on:
+  push:
+    branches:
+    - master
+    paths:
+      - "src/adservice"
+
+jobs:
+  Integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Login to Azure CLI"
+        uses: azure/login@v1  
+        with:
+          creds: ${{ secrets.AZ_CRED }}
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: boutiqueaksacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Delete image 
+        run: |
+          az acr repository delete --name boutiqueaksacr --image boutiqueaksacr/adservice:v1
+
+      - name: Building Ad Service 
+        run: |
+          cd src/adservice/
+          docker build -t boutiqueaksacr.azurecr.io/adservice:v1 .
+          docker push boutiqueaksacr.azurecr.io/adservice:v1
