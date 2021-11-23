@@ -25,9 +25,10 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Delete image 
+      - name: Delete image
         run: |
           az acr repository delete --name boutiqueaksacr --image checkoutservice:v1 --yes
+        continue-on-error: true
 
       - name: Building Checkout Service
         run: |
