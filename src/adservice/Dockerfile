@@ -47,6 +47,3 @@ EXPOSE 9555
 ENTRYPOINT ["/app/build/install/hipstershop/bin/AdService"]
 
 #Hi
-#Hi
-#Hi
-#Hi again

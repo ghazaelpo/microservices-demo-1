@@ -1,11 +1,11 @@
-name: 'Building Ad service image'
+name: 'Building Cart service image'
 
 on:
   push:
     branches:
     - master
     paths:
-      - "src/adservice/Dockerfile"
+      - "src/cartservice/src/Dockerfile"
 
 jobs:
   Integration:
@@ -27,10 +27,10 @@ jobs:
 
       - name: Delete image 
         run: |
-          az acr repository delete --name boutiqueaksacr --image checkoutservice:v1
+          az acr repository delete --name boutiqueaksacr --image cartservice:v1
 
-      - name: Building Checkout Service
+      - name: Building Cart Service
         run: |
-          cd src/checkoutservice/
-          docker build -t boutiqueaksacr.azurecr.io/checkoutservice:v1 .
-          docker push boutiqueaksacr.azurecr.io/checkoutservice:v1
+          cd src/cartservice/src/
+          docker build -t boutiqueaksacr.azurecr.io/cartservice:v1 .
+          docker push boutiqueaksacr.azurecr.io/cartservice:v1

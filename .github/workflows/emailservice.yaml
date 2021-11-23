@@ -1,11 +1,11 @@
-name: 'Building Ad service image'
+name: 'Building Email service image'
 
 on:
   push:
     branches:
     - master
     paths:
-      - "src/adservice/Dockerfile"
+      - "src/emailservice/Dockerfile"
 
 jobs:
   Integration:
@@ -27,10 +27,10 @@ jobs:
 
       - name: Delete image 
         run: |
-          az acr repository delete --name boutiqueaksacr --image checkoutservice:v1
+          az acr repository delete --name boutiqueaksacr --image emailservice:v1
 
-      - name: Building Checkout Service
+      - name: Building Email Service
         run: |
-          cd src/checkoutservice/
-          docker build -t boutiqueaksacr.azurecr.io/checkoutservice:v1 .
-          docker push boutiqueaksacr.azurecr.io/checkoutservice:v1
+          cd src/emailservice/
+          docker build -t boutiqueaksacr.azurecr.io/emailservice:v1 .
+          docker push boutiqueaksacr.azurecr.io/emailservice:v1

@@ -1,11 +1,11 @@
-name: 'Building Ad service image'
+name: 'Building LoadGenerator service image'
 
 on:
   push:
     branches:
     - master
     paths:
-      - "src/adservice/Dockerfile"
+      - "src/loadgenerator/Dockerfile"
 
 jobs:
   Integration:
@@ -27,10 +27,10 @@ jobs:
 
       - name: Delete image 
         run: |
-          az acr repository delete --name boutiqueaksacr --image checkoutservice:v1
+          az acr repository delete --name boutiqueaksacr --image loadgenerator:v1
 
-      - name: Building Checkout Service
+      - name: Building Load Generator
         run: |
-          cd src/checkoutservice/
-          docker build -t boutiqueaksacr.azurecr.io/checkoutservice:v1 .
-          docker push boutiqueaksacr.azurecr.io/checkoutservice:v1
+          cd src/loadgenerator/
+          docker build -t boutiqueaksacr.azurecr.io/loadgenerator:v1 .
+          docker push boutiqueaksacr.azurecr.io/loadgenerator:v1
