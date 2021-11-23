@@ -30,5 +30,3 @@ resource "azurerm_container_registry" "acr" {
   sku                 = "Standard"
   admin_enabled       = false
 }
-
-#edit
