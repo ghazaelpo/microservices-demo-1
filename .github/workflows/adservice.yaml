@@ -27,7 +27,7 @@ jobs:
 
       - name: Delete image 
         run: |
-          az acr repository delete --name boutiqueaksacr --image checkoutservice:v1
+          az acr repository delete --name boutiqueaksacr --image checkoutservice:v1 --yes
 
       - name: Building Checkout Service
         run: |
