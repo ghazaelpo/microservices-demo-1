@@ -27,11 +27,11 @@ jobs:
 
       - name: Delete image
         run: |
-          az acr repository delete --name boutiqueaksacr --image checkoutservice:v1 --yes
+          az acr repository delete --name boutiqueaksacr --image adservice:v1 --yes
         continue-on-error: true
 
-      - name: Building Checkout Service
+      - name: Building Ad Service 
         run: |
-          cd src/checkoutservice/
-          docker build -t boutiqueaksacr.azurecr.io/checkoutservice:v1 .
-          docker push boutiqueaksacr.azurecr.io/checkoutservice:v1
+          cd src/adservice/
+          docker build -t boutiqueaksacr.azurecr.io/adservice:v1 .
+          docker push boutiqueaksacr.azurecr.io/adservice:v1
