@@ -49,7 +49,7 @@ jobs:
           docker push boutiqueaksacr.azurecr.io/checkoutservice:v1
 
   CurrencyService:
-    needs: CartService
+    needs: CheckoutService
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
