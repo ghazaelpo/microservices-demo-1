@@ -1,15 +1,15 @@
-name: Building Cart Service
+name: Building Catalog Service
 
 # Only trigger, when the build workflow succeeded
 on:
   workflow_run:
-    workflows: ["Building Ad Service"]
+    workflows: ["Building Cart Service"]
     branches: [master]
     types:
       - completed
 
 jobs:
-  build-cart-service:
+  build-catalog-service:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,8 +22,8 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Building Cart Service
+      - name: Building Product Catalog Service
         run: |
-          cd src/cartservice/src/
-          docker build -t boutiqueaksacr.azurecr.io/cartservice:v1 .
-          docker push boutiqueaksacr.azurecr.io/cartservice:v1
+          cd src/productcatalogservice/
+          docker build -t boutiqueaksacr.azurecr.io/productcatalogservice:v1 .
+          docker push boutiqueaksacr.azurecr.io/productcatalogservice:v1
