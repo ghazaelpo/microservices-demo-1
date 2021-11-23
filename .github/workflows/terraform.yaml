@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-      - "microservices-demo-1/terraform/main.tf"
+      - "terraform/main.tf"
 
 jobs:
   terraform:
