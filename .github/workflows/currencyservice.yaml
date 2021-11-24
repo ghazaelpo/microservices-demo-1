@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-      - "src/Currency/Dockerfile"
+      - "src/Currency/"
 
 jobs:
   Integration:
@@ -28,6 +28,7 @@ jobs:
       - name: Delete image 
         run: |
           az acr repository delete --name boutiqueaksacr --image currencyservice:v1
+        continue-on-error: true
 
       - name: Building Currency Service
         run: |

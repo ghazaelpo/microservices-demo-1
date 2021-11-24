@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-      - "src/emailservice/Dockerfile"
+      - "src/emailservice/"
 
 jobs:
   Integration:
@@ -28,6 +28,7 @@ jobs:
       - name: Delete image 
         run: |
           az acr repository delete --name boutiqueaksacr --image emailservice:v1
+        continue-on-error: true
 
       - name: Building Email Service
         run: |

@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-      - "src/shipping/Dockerfile"
+      - "src/shipping/"
 
 jobs:
   Integration:
@@ -28,6 +28,7 @@ jobs:
       - name: Delete image 
         run: |
           az acr repository delete --name boutiqueaksacr --image shippingservice:v1
+        continue-on-error: true
 
       - name: Building Shipping Service
         run: |

@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-      - "src/loadgenerator/Dockerfile"
+      - "src/loadgenerator/"
 
 jobs:
   Integration:
@@ -28,6 +28,7 @@ jobs:
       - name: Delete image 
         run: |
           az acr repository delete --name boutiqueaksacr --image loadgenerator:v1
+        continue-on-error: true
 
       - name: Building Load Generator
         run: |

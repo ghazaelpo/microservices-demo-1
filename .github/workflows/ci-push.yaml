@@ -1,18 +1,15 @@
 name: Continuous Integration - Push
 on:
-  push:
-    branches:
-      - master
-
+ workflow_run:
+    workflows: ["On Disaster"]
+    branches: [master]
+    types:
+      - completed
 jobs:
   Integration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      #- name: "Login to Azure CLI"
-      #  uses: azure/login@v1  
-      #  with:
-      #    creds: ${{ AzLogin.ARM_SUBSCRIPTION_ID }}
 
       - name: Login to ACR
         uses: azure/docker-login@v1
@@ -216,6 +213,3 @@ jobs:
           cd src/shippingservice/
           docker build -t boutiqueaksacr.azurecr.io/shippingservice:v1 .
           docker push boutiqueaksacr.azurecr.io/shippingservice:v1
-
-#Hola
-#Hola 
