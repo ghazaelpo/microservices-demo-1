@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-      - "src/checkoutservice/Dockerfile"
+      - "src/checkoutservice/"
 
 jobs:
   Integration:
@@ -28,6 +28,7 @@ jobs:
       - name: Delete image 
         run: |
           az acr repository delete --name boutiqueaksacr --image adservice:v1
+        continue-on-error: true
 
       - name: Building Ad Service 
         run: |

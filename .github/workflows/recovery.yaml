@@ -1,0 +1,21 @@
+name: On Disaster
+on:
+  push:
+    branches:
+    - master
+    paths:
+      - ".github/workflows/recovery.yaml"
+
+jobs:
+  Builder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Trigger 
+        run: |
+          pwd
+
+#Modify this line.
+    
+#This yaml start a workflow to build all the microservices at once in case of it is required.

@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-      - "src/recommendationservice/Dockerfile"
+      - "src/recommendationservice/"
 
 jobs:
   Integration:
@@ -28,6 +28,7 @@ jobs:
       - name: Delete image 
         run: |
           az acr repository delete --name boutiqueaksacr --image recommendationservice:v1
+        continue-on-error: true
 
       - name: Building Recommendation service
         run: |

@@ -1,0 +1,21 @@
+---
+- name: installing vault
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: apt-get update
+    apt:
+      update_cache: yes
+  
+  - name: Installing unzip
+    apt:
+      name: unzip
+      state: present
+
+  - name: Unarchive a file that needs to be downloaded (added in 2.0)
+    ansible.builtin.unarchive:
+      src: https://releases.hashicorp.com/vault/1.9.0/vault_1.9.0_linux_amd64.zip
+      dest: /usr/local/bin
+      remote_src: yes
