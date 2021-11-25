@@ -34,5 +34,5 @@ jobs:
           az aks check-acr -g mario-robles -n boutiqueaks  --acr boutiqueaksacr.azurecr.io
 
       - name: Helm install
-        run: helm install boutique ./gpi
+        run: helm install boutique ./boutique
         working-directory: chart/
