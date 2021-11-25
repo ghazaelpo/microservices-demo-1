@@ -12,7 +12,7 @@ spec:
       labels:
         app: emailservice
     spec:
-#     serviceAccountName: default
+     serviceAccountName: vault-auth
       terminationGracePeriodSeconds: 5
       containers:
       - name: emailservice
@@ -68,7 +68,7 @@ spec:
       labels:
         app: checkoutservice
     spec:
-#      serviceAccountName: default
+      serviceAccountName: vault-auth
       containers:
         - name: checkoutservice
           image: boutiqueaksacr.azurecr.io/checkoutservice:v1
@@ -137,7 +137,7 @@ spec:
       labels:
         app: recommendationservice
     spec:
-#      serviceAccountName: default
+      serviceAccountName: vault-auth
       terminationGracePeriodSeconds: 5
       containers:
       - name: recommendationservice
@@ -199,7 +199,7 @@ spec:
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
- #     serviceAccountName: default
+      serviceAccountName: vault-auth
       containers:
         - name: frontend
           image: boutiqueaksacr.azurecr.io/frontend:v1
@@ -297,7 +297,7 @@ spec:
       labels:
         app: paymentservice
     spec:
- #     serviceAccountName: default
+      serviceAccountName: vault-auth
       terminationGracePeriodSeconds: 5
       containers:
       - name: paymentservice
@@ -347,7 +347,7 @@ spec:
       labels:
         app: productcatalogservice
     spec:
- #     serviceAccountName: default
+      serviceAccountName: vault-auth
       terminationGracePeriodSeconds: 5
       containers:
       - name: productcatalogservice
@@ -405,7 +405,7 @@ spec:
       labels:
         app: cartservice
     spec:
-#      serviceAccountName: default
+      serviceAccountName: vault-auth
       terminationGracePeriodSeconds: 5
       containers:
       - name: cartservice
@@ -461,7 +461,7 @@ spec:
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
-#      serviceAccountName: default
+      serviceAccountName: vault-auth
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       initContainers:
@@ -509,7 +509,7 @@ spec:
       labels:
         app: currencyservice
     spec:
-#      serviceAccountName: default
+      serviceAccountName: vault-auth
       terminationGracePeriodSeconds: 5
       containers:
       - name: currencyservice
@@ -566,7 +566,7 @@ spec:
       labels:
         app: shippingservice
     spec:
-#      serviceAccountName: default
+      serviceAccountName: vault-auth
       containers:
       - name: shippingservice
         image: boutiqueaksacr.azurecr.io/shippingservice:v1
@@ -677,7 +677,7 @@ spec:
       labels:
         app: adservice
     spec:
-#      serviceAccountName: default
+      serviceAccountName: vault-auth
       terminationGracePeriodSeconds: 5
       containers:
       - name: adservice
