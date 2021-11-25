@@ -12,7 +12,7 @@ spec:
       labels:
         app: emailservice
     spec:
-     serviceAccountName: vault-auth
+      serviceAccountName: vault-auth
       terminationGracePeriodSeconds: 5
       containers:
       - name: emailservice
