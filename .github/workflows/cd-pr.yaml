@@ -45,7 +45,7 @@ jobs:
 
       - name: Checking the ACR
         run: |
-          az aks check-acr -g ${{ env.RESOURCE_GROUP }} -n ${{ env.ACR }}  --acr ${{ env.ACR_LINK }}
+          az aks check-acr --name ${{ env.AKS }} --resource-group ${{ env.RESOURCE_GROUP }} --acr ${{ env.ACR_LINK }}
 
       - name: Helm install
         run: helm install boutique ./boutique
