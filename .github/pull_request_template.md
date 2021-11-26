@@ -4,4 +4,4 @@ Change summary:
 - 
 
 
-Remaining issues / concerns: initializing dev branch, initializing features branch
+Remaining issues / concerns: initializing dev branch, initializing features branch.
