@@ -14,9 +14,9 @@ jobs:
       - name: Import Secrets
         uses: hashicorp/vault-action@v2.0.1
         with:
-          url: http://vault.centralus.cloudapp.azure.com:8200
+          url: http://vault.centralus.cloudapp.azure.com:8200/
+          token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: true
-          token: \${{ secrets.VAULT_TOKEN }}
           secrets: |
             secret/ci REGISTRY_USERNAME | Registry_Username ;
             secret/ci REGISTRY_PASSWORD | Registry_Password 
