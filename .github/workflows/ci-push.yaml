@@ -5,6 +5,7 @@ on:
     branches: [master]
     types:
       - completed
+      
 jobs:
   Integration:
     runs-on: ubuntu-latest
