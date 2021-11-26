@@ -18,15 +18,15 @@ jobs:
           tlsSkipVerify: true
           token: \${{ secrets.VAULT_TOKEN }}
           secrets: |
-            secret/ci REGISTRY_USERNAME
-            secret/ci REGISTRY_PASSWORD
+            secret/ci REGISTRY_USERNAME | Registry_Username ;
+            secret/ci REGISTRY_PASSWORD | Registry_Password 
 
       - name: Login to ACR
         uses: azure/docker-login@v1
         with:
           login-server: boutiqueaksacr.azurecr.io
-          username: \${{ env.REGISTRY_USERNAME }}
-          password: \${{ env.REGISTRY_PASSWORD }}
+          username: \${{ env.Registry_Username }}
+          password: \${{ env.Registry_Password }}
 
       - name: Building Ad Service 
         run: |
