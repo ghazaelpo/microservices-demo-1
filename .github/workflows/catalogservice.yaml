@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-      - "src/productcatalogservice/Dockerfile"
+      - "src/productcatalogservice/"
 
 jobs:
   Integration:
@@ -28,6 +28,7 @@ jobs:
       - name: Delete image 
         run: |
           az acr repository delete --name boutiqueaksacr --image productcatalogservice:v1
+        continue-on-error: true
 
       - name: Building Product Catalog Service
         run: |

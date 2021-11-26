@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-      - "src/frontend/Dockerfile"
+      - "src/frontend/"
 
 jobs:
   Integration:
@@ -28,6 +28,7 @@ jobs:
       - name: Delete image 
         run: |
           az acr repository delete --name boutiqueaksacr --image frontend:v1
+        continue-on-error: true
 
       - name: Building Front-End
         run: |
