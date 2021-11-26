@@ -1,11 +1,12 @@
 name: Continuous Delivery - Pull Request
 on:
-  push:
+  pull_request:
     branches:
-    - master
-
+      - master
+    types: [closed]
 jobs:
   Deployment:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
 

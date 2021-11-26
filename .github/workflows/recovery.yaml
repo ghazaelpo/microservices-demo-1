@@ -1,21 +1,102 @@
-name: On Disaster
+name: Disaster recovery
 on:
-  push:
-    branches:
-    - master
-    paths:
-      - ".github/workflows/recovery.yaml"
-
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Reason'
+        required: true
+        default: 'Disaster recovery'
+        
 jobs:
-  Builder:
+  Integration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Trigger 
-        run: |
-          pwd
+      - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        id: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
 
-#Modify this line,,,,,,,,,
-    
-#This yaml start a workflow to build all the microservices at once in case of it is required.
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2.0.1
+        with:
+          url: http://vault.centralus.cloudapp.azure.com:8200/
+          token: ${{ secrets.VAULT_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+            secret/ci ACR_LINK ;
+            secret/ci REGISTRY_USERNAME ;
+            secret/ci REGISTRY_PASSWORD ;
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.ACR_LINK }}
+          username: ${{ env.REGISTRY_USERNAME  }}
+          password: ${{ env.REGISTRY_PASSWORD  }}
+
+      - name: Building Ad Service 
+        run: |
+          cd src/adservice/
+          docker build -t ${{ env.ACR_LINK }}/adservice:v1 .
+          docker push ${{ env.ACR_LINK }}/adservice:v1
+
+      - name: Building Cart Service
+        run: |
+          cd src/cartservice/src/
+          docker build -t ${{ env.ACR_LINK }}/cartservice:v1 .
+          docker push ${{ env.ACR_LINK }}/cartservice:v1
+
+      - name: Building Checkout Service
+        run: |
+          cd src/checkoutservice/
+          docker build -t ${{ env.ACR_LINK }}/checkoutservice:v1 .
+          docker push ${{ env.ACR_LINK }}/checkoutservice:v1
+
+      - name: Building Currency Service
+        run: |
+          cd src/currencyservice/
+          docker build -t ${{ env.ACR_LINK }}/currencyservice:v1 .
+          docker push ${{ env.ACR_LINK }}/currencyservice:v1
+
+      - name: Building Email Service
+        run: |
+          cd src/emailservice/
+          docker build -t ${{ env.ACR_LINK }}/emailservice:v1 .
+          docker push ${{ env.ACR_LINK }}/emailservice:v1
+
+      - name: Building Front-End
+        run: |
+          cd src/frontend/
+          docker build -t ${{ env.ACR_LINK }}/frontend:v1 .
+          docker push ${{ env.ACR_LINK }}/frontend:v1
+
+      - name: Building Load Generator
+        run: |
+          cd src/loadgenerator/
+          docker build -t ${{ env.ACR_LINK }}/loadgenerator:v1 .
+          docker push ${{ env.ACR_LINK }}/loadgenerator:v1
+
+      - name: Building Payment Service
+        run: |
+          cd src/paymentservice/
+          docker build -t ${{ env.ACR_LINK }}/paymentservice:v1 .
+          docker push ${{ env.ACR_LINK }}/paymentservice:v1
+
+      - name: Building Product Catalog Service
+        run: |
+          cd src/productcatalogservice/
+          docker build -t ${{ env.ACR_LINK }}/productcatalogservice:v1 .
+          docker push ${{ env.ACR_LINK }}/productcatalogservice:v1
+
+      - name: Building Recommendation service
+        run: |
+          cd src/recommendationservice/
+          docker build -t ${{ env.ACR_LINK }}/recommendationservice:v1 .
+          docker push ${{ env.ACR_LINK }}/recommendationservice:v1
+
+      - name: Building Shipping Service
+        run: |
+          cd src/shippingservice/
+          docker build -t ${{ env.ACR_LINK }}/shippingservice:v1 .
+          docker push ${{ env.ACR_LINK }}/shippingservice:v1
