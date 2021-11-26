@@ -25,6 +25,10 @@ jobs:
             secret/ci ARM_SUBSCRIPTION_ID ;
             secret/ci AZURE_LOGIN ;
             secret/ci AZURE_SECRET ;
+            secret/ci RESOURCE_GROUP ;
+            secret/ci ACR ;
+            secret/ci AKS ;
+            secret/ci ACR_LINK ;
 
       - name: "Login to Azure CLI"
         run: |
@@ -33,15 +37,15 @@ jobs:
       - name: "Login to Azure AKS"
         run: |
           az account set --subscription ${{ env.ARM_SUBSCRIPTION_ID }}
-          az aks get-credentials --resource-group mario-robles --name boutiqueaks
+          az aks get-credentials --resource-group ${{ env.RESOURCE_GROUP }} --name ${{ env.ACR }}
 
       - name: Attaching Cluster
         run: |
-          az aks update -n boutiqueaks -g mario-robles --attach-acr boutiqueaksacr
+          az aks update -n ${{ env.AKS }} -g ${{ env.RESOURCE_GROUP }} --attach-acr ${{ env.ACR }}
 
       - name: Checking the ACR
         run: |
-          az aks check-acr -g mario-robles -n boutiqueaks  --acr boutiqueaksacr.azurecr.io
+          az aks check-acr -g ${{ env.RESOURCE_GROUP }} -n ${{ env.ACR }}  --acr ${{ env.ACR_LINK }}
 
       - name: Helm install
         run: helm install boutique ./boutique
