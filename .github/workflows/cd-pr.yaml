@@ -1,9 +1,9 @@
 name: Continuous Delivery - Pull Request
 on:
-  pull_request:
+  push:
     branches:
       - master
-    types: [closed]
+      
 jobs:
   Deployment:
     if: github.event.pull_request.merged == true
@@ -12,18 +12,32 @@ jobs:
 
       - uses: actions/checkout@v2
 
+      - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        id: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
+
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2.0.1
+        with:
+          url: http://vault.centralus.cloudapp.azure.com:8200/
+          token: ${{ secrets.VAULT_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+            secret/ci AZURE_CREDENTIALS ;
+            secret/ci AZURE_LOGIN ;
+            secret/ci AZURE_SECRET ;
+
+
       - name: Login to AKS
         uses: azure/aks-set-context@v1
-        env:
-          CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
         with:
-          creds: ${{ env.CREDENTIALS }}
+          creds: ${{ env.AZURE_CREDENTIALS }}
           cluster-name: boutiqueaks
           resource-group: mario-robles
       
       - name: "Login to Azure CLI"
         run: |
-          az login -u ${{ secrets.AZURE_LOGIN }} -p ${{ secrets.AZURE_SECRET }}
+          az login -u ${{ env.AZURE_LOGIN }} -p ${{ env.AZURE_SECRET }}
 
       - name: Attaching Cluster
         run: |
