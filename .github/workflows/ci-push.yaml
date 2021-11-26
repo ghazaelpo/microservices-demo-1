@@ -11,6 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        id: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
+
       - name: Import Secrets
         uses: hashicorp/vault-action@v2.0.1
         with:
@@ -18,8 +22,8 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: true
           secrets: |
-            echo "${{ secret/ci REGISTRY_USERNAME ; }}" >> $GITHUB_ENV
-            echo "${{ secret/ci REGISTRY_PASSWORD ; }}" >> $GITHUB_ENV
+            secret/ci REGISTRY_USERNAME ;
+            secret/ci REGISTRY_PASSWORD ;
 
       - name: Login to ACR
         uses: azure/docker-login@v1
