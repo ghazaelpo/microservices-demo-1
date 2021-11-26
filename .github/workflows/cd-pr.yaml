@@ -22,21 +22,18 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: true
           secrets: |
-            secret/ci AZURE_CREDENTIALS ;
+            secret/ci ARM_SUBSCRIPTION_ID ;
             secret/ci AZURE_LOGIN ;
             secret/ci AZURE_SECRET ;
 
-
-      - name: Login to AKS
-        uses: azure/aks-set-context@v1
-        with:
-          creds: ${{ env.AZURE_CREDENTIALS }}
-          cluster-name: boutiqueaks
-          resource-group: mario-robles
-      
       - name: "Login to Azure CLI"
         run: |
           az login -u ${{ env.AZURE_LOGIN }} -p ${{ env.AZURE_SECRET }}
+
+      - name: "Login to Azure AKS"
+        run: |
+          az account set --subscription ${{ env.ARM_SUBSCRIPTION_ID }}
+          az aks get-credentials --resource-group mario-robles --name boutiqueaks
 
       - name: Attaching Cluster
         run: |
