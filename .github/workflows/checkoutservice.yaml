@@ -50,10 +50,10 @@ jobs:
 
       - name: Delete image 
         run: |
-          az acr repository delete --name ${{ env.ACR }} --image adservice:v1
+          az acr repository delete --name ${{ env.ACR }} --image checkoutservice:v1
         continue-on-error: true
 
       - name: Building Ad Service 
         run: |
           cd src/adservice/
-          docker build -t ${{ env.ACR_LINK }}/adservice:v1 .
+          docker build -t ${{ env.ACR_LINK }}/checkoutservice:v1 .
