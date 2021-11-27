@@ -1,4 +1,4 @@
-name: 'Checkout service image test'
+name: 'Checkout service image'
 
 on:
   pull_request:

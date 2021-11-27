@@ -1,4 +1,4 @@
-name: 'Front-End service image test'
+name: 'Front-End service image'
 
 on:
    pull_request:

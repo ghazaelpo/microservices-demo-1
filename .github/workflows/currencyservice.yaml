@@ -1,4 +1,4 @@
-name: 'Currency service image test'
+name: 'Currency service image'
 
 on:
   pull_request:
