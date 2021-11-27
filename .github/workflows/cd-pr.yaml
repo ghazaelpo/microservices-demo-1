@@ -52,6 +52,7 @@ jobs:
       - name: Building Ad Service 
         run: |
           cd src/adservice/
+          docker build -t ${{ env.ACR_LINK }}/adservice:v1 .
           docker push ${{ env.ACR_LINK }}/adservice:v1
 
       - name: Delete image
@@ -62,6 +63,7 @@ jobs:
       - name: Building Cart Service
         run: |
           cd src/cartservice/src/
+          docker build -t ${{ env.ACR_LINK }}/cartservice:v1 .
           docker push ${{ env.ACR_LINK }}/cartservice:v1
 
       - name: Delete image
@@ -72,6 +74,7 @@ jobs:
       - name: Building Checkout Service
         run: |
           cd src/checkoutservice/
+          docker build -t ${{ env.ACR_LINK }}/checkoutservice:v1 .
           docker push ${{ env.ACR_LINK }}/checkoutservice:v1
 
       - name: Delete image
@@ -82,6 +85,7 @@ jobs:
       - name: Building Currency Service
         run: |
           cd src/currencyservice/
+          docker build -t ${{ env.ACR_LINK }}/currencyservice:v1 .
           docker push ${{ env.ACR_LINK }}/currencyservice:v1
 
       - name: Delete image
@@ -92,6 +96,7 @@ jobs:
       - name: Building Email Service
         run: |
           cd src/emailservice/
+          docker build -t ${{ env.ACR_LINK }}/emailservice:v1 .
           docker push ${{ env.ACR_LINK }}/emailservice:v1
 
       - name: Delete image
@@ -102,6 +107,7 @@ jobs:
       - name: Building Front-End
         run: |
           cd src/frontend/
+          docker build -t ${{ env.ACR_LINK }}/frontend:v1 .
           docker push ${{ env.ACR_LINK }}/frontend:v1
 
       - name: Delete image
@@ -112,6 +118,7 @@ jobs:
       - name: Building Load Generator
         run: |
           cd src/loadgenerator/
+          docker build -t ${{ env.ACR_LINK }}/loadgenerator:v1 .
           docker push ${{ env.ACR_LINK }}/loadgenerator:v1
 
       - name: Delete image
@@ -122,6 +129,7 @@ jobs:
       - name: Building Payment Service
         run: |
           cd src/paymentservice/
+          docker build -t ${{ env.ACR_LINK }}/paymentservice:v1 .
           docker push ${{ env.ACR_LINK }}/paymentservice:v1
 
       - name: Delete image
@@ -132,6 +140,7 @@ jobs:
       - name: Building Product Catalog Service
         run: |
           cd src/productcatalogservice/
+          docker build -t ${{ env.ACR_LINK }}/productcatalogservice:v1 .
           docker push ${{ env.ACR_LINK }}/productcatalogservice:v1
 
       - name: Delete image
@@ -142,6 +151,7 @@ jobs:
       - name: Building Recommendation service
         run: |
           cd src/recommendationservice/
+          docker build -t ${{ env.ACR_LINK }}/recommendationservice:v1 .
           docker push ${{ env.ACR_LINK }}/recommendationservice:v1
 
       - name: Delete image
@@ -152,6 +162,7 @@ jobs:
       - name: Building Shipping Service
         run: |
           cd src/shippingservice/
+          docker build -t ${{ env.ACR_LINK }}/shippingservice:v1 .
           docker push ${{ env.ACR_LINK }}/shippingservice:v1
 
       - name: "Login to Azure AKS"
