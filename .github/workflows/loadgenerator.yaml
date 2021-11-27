@@ -1,4 +1,4 @@
-name: 'Load Generator service image test'
+name: 'Load Generator service image'
 
 on:
    pull_request:

@@ -1,4 +1,4 @@
-name: 'Ad service image test'
+name: Ad service image
 
 on:
   pull_request:

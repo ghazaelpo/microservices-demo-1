@@ -1,4 +1,4 @@
-name: 'Recommendation service image test'
+name: 'Recommendation service image'
 
 on:
    pull_request:

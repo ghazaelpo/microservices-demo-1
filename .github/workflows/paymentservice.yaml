@@ -1,4 +1,4 @@
-name: 'Payment service image test'
+name: 'Payment service image'
 
 on:
    pull_request:

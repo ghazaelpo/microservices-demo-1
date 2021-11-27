@@ -1,4 +1,4 @@
-name: 'Cart service image test'
+name: 'Cart service image'
 
 on:
   pull_request:

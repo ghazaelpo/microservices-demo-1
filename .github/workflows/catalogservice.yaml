@@ -1,4 +1,4 @@
-name: 'Catalog service image test'
+name: 'Catalog service image'
 
 on:
   pull_request:
