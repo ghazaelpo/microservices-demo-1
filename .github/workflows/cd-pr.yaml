@@ -26,6 +26,8 @@ jobs:
             secret/ci ARM_SUBSCRIPTION_ID ;
             secret/ci AZURE_LOGIN ;
             secret/ci AZURE_SECRET ;
+            secret/ci REGISTRY_USERNAME ;
+            secret/ci REGISTRY_PASSWORD ;
             secret/ci RESOURCE_GROUP ;
             secret/ci ACR ;
             secret/ci AKS ;
