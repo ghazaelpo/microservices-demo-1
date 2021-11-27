@@ -1,14 +1,17 @@
-name: 'Building Payment service image'
+name: 'Payment service image test'
 
 on:
-  push:
+   pull_request:
     branches:
+    - dev
     - master
+    types: [closed]
     paths:
       - "src/paymentservice/"
 
 jobs:
   Integration:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,13 +27,11 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: true
           secrets: |
-            secret/ci ARM_SUBSCRIPTION_ID ;
             secret/ci AZURE_LOGIN ;
             secret/ci AZURE_SECRET ;
-            secret/ci RESOURCE_GROUP ;
             secret/ci ACR ;
-            secret/ci AKS ;
-            secret/ci ACR_LINK ;
+            secret/ci REGISTRY_USERNAME ;
+            secret/ci REGISTRY_PASSWORD  ;
 
       - name: "Login to Azure CLI"
         run: |
@@ -43,6 +44,10 @@ jobs:
           username: ${{ env.REGISTRY_USERNAME  }}
           password: ${{ env.REGISTRY_PASSWORD  }}
 
+      - name: Images test building
+        run: |
+          echo "Testing images building"
+
       - name: Delete image 
         run: |
           az acr repository delete --name ${{ env.ACR }} --image paymentservice:v1
@@ -52,4 +57,3 @@ jobs:
         run: |
           cd src/paymentservice/
           docker build -t ${{ env.ACR_LINK }}/paymentservice:v1 .
-          docker push ${{ env.ACR_LINK }}/paymentservice:v1
