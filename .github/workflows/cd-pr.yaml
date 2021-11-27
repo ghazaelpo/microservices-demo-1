@@ -48,8 +48,8 @@ jobs:
         run: |
           az acr repository delete --name ${{ env.ACR }} --image adservice:v1 --yes
           az acr repository delete --name ${{ env.ACR }} --image cartservice:v1 --yes
-          az acr repository delete --name ${{ env.ACR }} --image checkout:v1 --yes
-          az acr repository delete --name ${{ env.ACR }} --image currency:v1 --yes
+          az acr repository delete --name ${{ env.ACR }} --image checkoutservice:v1 --yes
+          az acr repository delete --name ${{ env.ACR }} --image currencyservice:v1 --yes
           az acr repository delete --name ${{ env.ACR }} --image emailservice:v1 --yes
           az acr repository delete --name ${{ env.ACR }} --image frontend:v1 --yes
           az acr repository delete --name ${{ env.ACR }} --image loadgenerator:v1 --yes
