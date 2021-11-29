@@ -1,0 +1,66 @@
+name: Disaster recovery deployment
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Reason'
+        required: true
+        default: 'Disaster recovery'
+
+jobs:
+  Deployment:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        id: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
+
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2.0.1
+        with:
+          url: http://vault.centralus.cloudapp.azure.com:8200/
+          token: ${{ secrets.VAULT_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+            secret/ci ARM_SUBSCRIPTION_ID ;
+            secret/ci AZURE_LOGIN ;
+            secret/ci AZURE_SECRET ;
+            secret/ci REGISTRY_USERNAME ;
+            secret/ci REGISTRY_PASSWORD ;
+            secret/ci RESOURCE_GROUP ;
+            secret/ci ACR ;
+            secret/ci AKS ;
+            secret/ci ACR_LINK ;
+
+      - name: "Login to Azure CLI"
+        run: |
+          az login -u ${{ env.AZURE_LOGIN }} -p ${{ env.AZURE_SECRET }}
+
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.ACR_LINK }}
+          username: ${{ env.REGISTRY_USERNAME  }}
+          password: ${{ env.REGISTRY_PASSWORD  }}
+          
+      - name: "Login to Azure AKS"
+        run: |
+          az account set --subscription ${{ env.ARM_SUBSCRIPTION_ID }}
+          az aks get-credentials --resource-group ${{ env.RESOURCE_GROUP }} --name ${{ env.AKS }}
+
+      - name: Attaching Cluster
+        run: |
+          az aks update -n ${{ env.AKS }} -g ${{ env.RESOURCE_GROUP }} --attach-acr ${{ env.ACR }}
+
+      - name: Checking the ACR
+        run: |
+          az aks check-acr --name ${{ env.AKS }} --resource-group ${{ env.RESOURCE_GROUP }} --acr ${{ env.ACR_LINK }}
+
+      - name: Helm install
+        run: helm install boutique ./boutique
+        working-directory: chart/
+        

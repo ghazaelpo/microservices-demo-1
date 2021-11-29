@@ -1,4 +1,4 @@
-name: Disaster recovery
+name: Disaster recovery integration
 on:
   workflow_dispatch:
     inputs:
