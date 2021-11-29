@@ -9,7 +9,6 @@ on:
 
 jobs:
   Deployment:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
 
@@ -46,7 +45,7 @@ jobs:
           login-server: ${{ env.ACR_LINK }}
           username: ${{ env.REGISTRY_USERNAME  }}
           password: ${{ env.REGISTRY_PASSWORD  }}
-          
+
       - name: "Login to Azure AKS"
         run: |
           az account set --subscription ${{ env.ARM_SUBSCRIPTION_ID }}
