@@ -46,18 +46,34 @@ jobs:
           username: ${{ env.REGISTRY_USERNAME  }}
           password: ${{ env.REGISTRY_PASSWORD  }}
 
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+
       - name: "Login to Azure AKS"
         run: |
           az account set --subscription ${{ env.ARM_SUBSCRIPTION_ID }}
           az aks get-credentials --resource-group ${{ env.RESOURCE_GROUP }} --name ${{ env.AKS }}
 
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+
       - name: Attaching Cluster
         run: |
           az aks update -n ${{ env.AKS }} -g ${{ env.RESOURCE_GROUP }} --attach-acr ${{ env.ACR }}
 
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+
       - name: Checking the ACR
         run: |
           az aks check-acr --name ${{ env.AKS }} --resource-group ${{ env.RESOURCE_GROUP }} --acr ${{ env.ACR_LINK }}
+
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
 
       - name: Helm install
         run: helm install boutique ./boutique
