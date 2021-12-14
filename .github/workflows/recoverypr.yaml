@@ -78,4 +78,5 @@ jobs:
       - name: Helm install
         run: helm install boutique ./boutique
         working-directory: chart/
-        
+
+#Testing        
