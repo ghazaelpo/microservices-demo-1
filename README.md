@@ -68,4 +68,3 @@ To improve the security of our pipeline, and make sure we have control of our se
 
 ![DevOps - Frame 1.jpg](img/DevOps_-_Frame_1.jpg)
 
-MCC
