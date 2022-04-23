@@ -23,7 +23,7 @@ jobs:
       - name: Import Secrets
         uses: hashicorp/vault-action@v2.0.1
         with:
-          url: http://vault.eastus.cloudapp.azure.com:8200/
+          url: http://vault.centralus.cloudapp.azure.com:8200/
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: true
           secrets: |
